@@ -1,0 +1,54 @@
+{% extends "base_generic.html" %} {% load static %} {% block jsoverride %}
+<script defer>
+  /* todo: make the functions hide the CV if button is clicked again */
+
+  function display_cv_pl() {
+    console.log("display_cv_pl");
+    var en = document.getElementById("cv_en");
+    var pl = document.getElementById("cv_pl");
+    en.style.display = "none";
+    pl.style.display = "block";
+  }
+  function display_cv_en() {
+    console.log("display_cv_en");
+    var en = document.getElementById("cv_en");
+    var pl = document.getElementById("cv_pl");
+    pl.style.display = "none";
+    en.style.display = "block";
+  }
+</script>
+{% endblock %} {% block cssoverride %}
+<style>
+  #cv_pl {
+    display: none;
+  }
+  #cv_en {
+    display: none;
+  }
+</style>
+{% endblock %} {% block content %}
+
+<div>
+  <h1>About Me Placeholder</h1>
+
+  <button onclick="display_cv_pl()">CV - Polish</button>
+  <button onclick="display_cv_en()">CV - English</button>
+
+  <div id="cv_pl">
+    <embed
+      src="{% static 'documents/CV Daniel Borowiecki 05-2023 PL Generic.pdf' %}?#zoom=100&scrollbar=0&toolbar=1&navpanes=0"
+      type="application/pdf"
+      width="100%"
+      height="1200px"
+    />
+  </div>
+  <div id="cv_en">
+    <embed
+      src='{% static "documents/CV Daniel Borowiecki 05-2023 EN Generic.pdf" %}?#zoom=100&scrollbar=0&toolbar=1&navpanes=0'
+      type="application/pdf"
+      width="100%"
+      height="1200px"
+    />
+  </div>
+</div>
+{% endblock %}

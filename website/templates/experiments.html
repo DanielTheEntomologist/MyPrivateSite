@@ -1,0 +1,44 @@
+{% extends "base_generic.html" %} {% block content %}
+<div>
+  <!-- Div that uses bootstrap classes to have 2 by 2 grid -->
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Experiments</h2>
+    </div>
+    <div class="col-sm-6">
+      <h2>Experiment Links</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <p>Placeholder Tower introduction.</p>
+    </div>
+    <div class="col-sm-6">
+      <a class="link-text" href="{% url 'tower_explanation' %}">
+        <p>Tower explanation link.</p>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <p>Heroku Deployment introduction.</p>
+    </div>
+    <div class="col-sm-6">
+      <a class="link-text" href="{% url 'heroku_explanation' %}">
+        <p>Heroku Deployment explanation link.</p>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <p>Advent of Code introduction.</p>
+  </div>
+  <div class="col-sm-6">
+    <a class="link-text" href="{% url 'advent_explanation' %}">
+      <p>Advent of Code explanation link.</p>
+    </a>
+  </div>
+</div>
+</div>
+{% endblock %}

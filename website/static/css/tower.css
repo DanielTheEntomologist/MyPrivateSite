@@ -1,0 +1,150 @@
+.tower-container {
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  background-color: rgb(197, 255, 255);
+}
+
+.announcement {
+  height: 100%;
+  width: 100%;
+  /* background-color: rgb(255, 255, 255); */
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  z-index: 199;
+}
+
+.layer {
+  left: 45%;
+  top: 120%;
+  width: 250px;
+  height: 20px;
+  /* border: 1px solid rgb(255, 166, 0); */
+  display: flex;
+  position: absolute;
+  /* animation: layer-scroll 4s linear; */
+  overflow: visible;
+  z-index: 5;
+}
+.ground {
+  top:110%;
+  left: 0%;
+  width: 200%;
+  height: 450px;
+  /* border: 1px solid orange; */
+  background-color: green;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  position: absolute;
+  animation: init-scroll 7s linear;
+  overflow: visible;
+  z-index: 4;
+}
+
+.farcloud{
+  top:50%; 
+  left: 30%;
+  position: absolute;
+  animation: farcloud-scroll 16s ease-in;
+}
+
+.closecloud{
+  top:-100%; 
+  left: 159%;
+  transform: scale(3);
+  z-index: 200;
+  position: relative;
+  animation: closecloud-scroll 3s linear 8s infinite;
+}
+
+/* .box{ border: 1px solid orange;} */
+
+@keyframes farcloud-scroll {
+  0% {
+    /* top: -100px; */
+    top: -50%;
+  }
+  100% {
+    /* top: +300px; */
+    top: +50%;
+  }
+}
+@keyframes closecloud-scroll {
+  0% {
+    /* top: -100px; */
+    top: -100%;
+  }
+  100% {
+    /* top: +300px; */
+    top: +120%;
+  }
+}
+
+.brick{
+  width: 50px;
+  height: 20px;
+  border: 3px solid Grey;
+  border-radius:  2px;
+  background-color: rgb(255, 0, 0);
+  position: relative;
+  z-index: 5;
+}
+.shortbrick {
+  width: 25px;
+  height: 20px;
+}
+
+.paused{
+  -webkit-animation-play-state:paused;
+  -moz-animation-play-state:paused;
+  -o-animation-play-state:paused; 
+  animation-play-state:paused;
+}
+
+/* @keyframes layer-scroll {
+  0% {
+    top: -20%;
+  }
+  100% {
+
+    top: +120%;
+  }
+} */
+@keyframes init-scroll {
+  0% {
+
+    top: -20%;
+  }
+  100% {
+
+    top: +120%;
+  }
+}
+
+/* .flyingbrick {
+  position: relative;
+  animation: flyingbrick-laying 4s ease-in infinite;
+}
+
+@keyframes flyingbrick-laying {
+  0% {
+    bottom: 1000%;
+    left: 100%;
+  }
+  30% {
+    bottom: 0%;
+    left: 0%;
+  }
+  100% {
+    bottom: 0%;
+    left: 0%;
+  }
+} */

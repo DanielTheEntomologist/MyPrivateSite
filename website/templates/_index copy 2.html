@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block title %}<title>Site Under Construction</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Add additional CSS in static file -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/landing_wave.css' %}">
+    {% load static %}
+    <script src="{% static 'js/landing_wave.js' %}" defer></script>
+  </head>
+
+<body>
+    
+    <div id="box-container">
+        <div id="box">
+          
+            <h1 >Under Construction </h1>
+            <h1>
+              We are currently working on our website. Please check back later.
+          </h1>
+          
+        </div> 
+        <div id="wave-container" class="background">
+        <svg height="100%" width="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+          <!-- <polyline points="0,0 200,250 300,300 700,400 200,400 1000,1000" style="fill:none;stroke:black;stroke-width:3" /> -->
+          <path class="wave" id="animated-path-lower" d="M00,1000 C1000,100 300,100 1000,1000" />
+          <path id="animated-path-upper" d="M00,000 C1000,100 300,100 1000,000" />
+          <!-- <path d="M150 0 L75 200 L225 200 Z" /> -->
+        </svg>
+        </div>
+      </div>
+    
+
+	<div style="text-align:center;">
+		<pre style="font-size: 48px;">  :-)  </pre>
+		<h1>Site Under Construction</h1>
+		<p>We're currently working on building this site. Please check back later.</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends "base_generic.html" %} {% block cssoverride %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/tower.css' %}" />
+{% endblock %} {% block jsoverride %} {% load static %}
+<script src="{% static 'js/tower.js' %}" defer></script>
+{% endblock %} {% block content %}
+<div class="tower-container">
+  <div
+    class="announcement"
+    style="
+      backdrop-filter: blur(5px);
+      mask: linear-gradient(transparent, black, transparent);
+    "
+  >
+    <h1 style="text-align: center; color: #000">Site Under Construction</h1>
+    <p style="text-align: center; color: #000">
+      This site is currently under construction. Feel free to explore what is
+      already here. Check back later for updates.
+    </p>
+  </div>
+
+  <div class="farcloud box">
+    <svg>
+      <path
+        d="M 25,60 
+              a 20,20 1 0,0 0,40 
+              h 50 
+              a 20,20 1 0,0 0,-40 
+              a 10,10 1 0,0 -15,-10 
+              a 15,15 1 0,0 -35,10  
+              z"
+        fill="white"
+      />
+    </svg>
+  </div>
+  <div class="closecloud box">
+    <svg width="100" height="125">
+      <path
+        d="M 25,60 
+                a 20,20 1 0,0 0,40 
+                h 50 
+                a 20,20 1 0,0 0,-40 
+                a 10,10 1 0,0 -15,-10 
+                a 15,15 1 0,0 -35,10  
+                z"
+        fill="white"
+      />
+    </svg>
+  </div>
+  <div class="ground"></div>
+</div>
+{% endblock %}
