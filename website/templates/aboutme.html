@@ -29,11 +29,14 @@
 {% endblock %} {% block content %}
 
 <div>
-  <h1>About Me Placeholder</h1>
-
-  <button onclick="display_cv_pl()">CV - Polish</button>
-  <button onclick="display_cv_en()">CV - English</button>
-
+  <h1>About Me</h1>
+  <p1 class="mx-2 my-2"
+    >Soon You will be able to learn all the exciting facts about me.
+  </p1>
+  <div>
+    <button class="my-2" onclick="display_cv_pl()">CV - Polish</button>
+    <button class="my-2" onclick="display_cv_en()">CV - English</button>
+  </div>
   <div id="cv_pl">
     <embed
       src="{% static 'documents/CV Daniel Borowiecki 05-2023 PL Generic.pdf' %}?#zoom=100&scrollbar=0&toolbar=1&navpanes=0"
