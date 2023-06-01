@@ -12,6 +12,6 @@ urlpatterns = [
     path('aboutme', views.aboutme, name='aboutme'),
     path('tower_explanation', views.tower_explanation, name='tower_explanation'),
     path('heroku_explanation', views.heroku_explanation, name='heroku_explanation'),
-    path('advent_explanation', views.advent_explanation, name='advent_explanation')
+    path('advent_explanation', views.advent_explanation, name='advent_explanation'),
     path('daniel.borowiecki.info', views.welcome, name='welcome')
 ]
