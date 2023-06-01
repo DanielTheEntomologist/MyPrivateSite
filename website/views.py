@@ -29,3 +29,9 @@ def heroku_explanation(request):
 
 def advent_explanation(request):
     return render(request, template_name="advent_explanation.html")
+
+from django.shortcuts import redirect
+
+def redirect_daniel(request):
+    response = redirect('welcome')
+    return response
