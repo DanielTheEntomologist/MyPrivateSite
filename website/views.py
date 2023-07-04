@@ -29,20 +29,3 @@ def heroku_explanation(request):
 
 def advent_explanation(request):
     return render(request, template_name="advent_explanation.html")
-
-# from django.shortcuts import redirect
-
-# def redirect_daniel(request):
-
-from django.contrib.sites.shortcuts import get_current_site
-
-def redirect_daniel(request):
-    current_site = get_current_site(request)
-    if current_site.domain == 'daniel.borowiecki.info':
-        return "daniel.borowiecki.info"
-        
-    else:
-        # Do something else.
-        pass
-    
-    return response
