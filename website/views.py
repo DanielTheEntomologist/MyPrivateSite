@@ -29,3 +29,20 @@ def heroku_explanation(request):
 
 def advent_explanation(request):
     return render(request, template_name="advent_explanation.html")
+
+import markdown
+
+def test_dynamic_view(request):
+    
+    
+    # read markdown file
+    with open("website/static/md/example.md", "r") as f:
+        markdown_text = f.read()
+
+    html = markdown.markdown(markdown_text)
+
+    context = {
+        'dynamic_content': html,  # Replace with your dynamic content
+    }
+
+    return render(request, template_name="test_dynamic_view.html", context=context)

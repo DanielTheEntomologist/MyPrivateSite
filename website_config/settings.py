@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
+    # 'django.contrib.sites', # sites framework was attempted to be used for redirection
+    # from daniel.borowiecki.info to borowiecki.info 
+    # but I did not manage to make it work. Instead I used a redirect in the DNS settings.
     # my custom app
     'website',
 ]
