@@ -1,6 +1,9 @@
 #website.urls
 
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
+
 from website import views
 
 urlpatterns = [
@@ -14,4 +17,12 @@ urlpatterns = [
     path('heroku_explanation', views.heroku_explanation, name='heroku_explanation'),
     path('advent_explanation', views.advent_explanation, name='advent_explanation'),
     path('test_dynamic_view', views.test_dynamic_view, name='test_dynamic_view'),
+    
+    path('post', views.post, name='post'),
+    path('post/<slug>/', views.post, name = 'post'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT )
+    

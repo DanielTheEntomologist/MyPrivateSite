@@ -46,3 +46,25 @@ def test_dynamic_view(request):
     }
 
     return render(request, template_name="test_dynamic_view.html", context=context)
+
+from .models import Post, Author, Category
+
+def blog(request):
+    """View blog page with all posts"""
+    posts = Post.objects.all()
+    categories = Category.objects.all()[0:3]
+    featured = Post.objects.filter(featured=True)
+    latest = Post.objects.order_by('-timestamp')[0:3]
+    context= {
+        'object_list': featured,
+        'latest': latest,
+        'categories':categories,
+    }
+    return render(request, 'blog.html', context)
+    
+def post(request,slug):
+    post = Post.objects.get(slug=slug)
+    context = {
+        'post': post,
+    }
+    return render(request, 'post.html', context)

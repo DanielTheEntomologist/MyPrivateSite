@@ -22,6 +22,9 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+# from django.core.files.storage import FileSystemStorage
+# from django.conf import settings
+# upload_storage = FileSystemStorage(location=settings.STATIC_ROOT, base_url='/staticfiles/images')
 class Post(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField()
@@ -29,6 +32,8 @@ class Post(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    # thumbnail = models.ImageField(upload_to='your_image_name', storage=upload_storage)
+    # thumbnail = models.ImageField( storage=upload_storage)
     thumbnail = models.ImageField()
     categories = models.ManyToManyField(Category)
     featured = models.BooleanField()
