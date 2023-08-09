@@ -68,3 +68,10 @@ def post(request,slug):
         'post': post,
     }
     return render(request, 'post.html', context)
+
+def series(request):
+    posts = Post.objects.all()
+    context = {
+        'posts': posts,
+    }
+    return render(request, 'series.html', context)
