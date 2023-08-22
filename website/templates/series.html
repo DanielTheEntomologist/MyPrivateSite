@@ -1,9 +1,0 @@
-<!--prettier-ignore-->
-{% extends "base_generic.html" %}
-{% load static %}
-{% block content %}
-    {% for post in posts %} 
-        {% include "post_display.html" with post=post %}
-    {% endfor %}
-{% endblock %}
-<!-- prettier-ignore-attribute -->

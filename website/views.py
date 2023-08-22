@@ -33,8 +33,6 @@ def advent_explanation(request):
 import markdown
 
 def test_dynamic_view(request):
-    
-    
     # read markdown file
     with open("website/static/md/example.md", "r") as f:
         markdown_text = f.read()
@@ -69,9 +67,19 @@ def post(request,slug):
     }
     return render(request, 'post.html', context)
 
-def series(request):
-    posts = Post.objects.all()
+def category(request,slug):
+    category = Category.objects.get(slug=slug)
+    posts_in_category = Post.objects.filter(category=category)
     context = {
-        'posts': posts,
+        'posts': posts_in_category,
     }
-    return render(request, 'series.html', context)
+    return render(request, 'category.html', context)
+
+def categories(request):
+    #get all categories
+    categories = Category.objects.all()
+    
+    context = {
+        'categories': categories,
+    }
+    return render(request, 'categories.html', context)

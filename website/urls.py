@@ -20,7 +20,8 @@ urlpatterns = [
     
     path('post', views.post, name='post'),
     path('post/<slug>/', views.post, name = 'post'),
-    path('series', views.series, name='series'),
+    path('category', views.categories, name='categories'),
+    path('category/<slug>/', views.category, name = 'category'),
 ]
 
 if settings.DEBUG:

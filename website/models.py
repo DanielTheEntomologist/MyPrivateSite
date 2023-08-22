@@ -3,7 +3,6 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 # Create your models here.
-
 User = get_user_model()
 
 class Author(models.Model):
@@ -21,10 +20,18 @@ class Category(models.Model):
     
     def __str__(self):
         return self.title
+    
+    @classmethod
+    def get_default_pk(cls):
+        category, created = cls.objects.get_or_create(
+            title='Other', 
+            defaults=dict(
+            sub_title = "Miscellanous ideas",
+            slug = "misc",
+            thumbnail = None)
+        )
+        return category.pk
 
-# from django.core.files.storage import FileSystemStorage
-# from django.conf import settings
-# upload_storage = FileSystemStorage(location=settings.STATIC_ROOT, base_url='/staticfiles/images')
 class Post(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField()
@@ -33,10 +40,8 @@ class Post(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
     content = models.TextField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    # thumbnail = models.ImageField(upload_to='your_image_name', storage=upload_storage)
-    # thumbnail = models.ImageField( storage=upload_storage)
     thumbnail = models.ImageField()
-    categories = models.ManyToManyField(Category)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,default=Category.get_default_pk())
     featured = models.BooleanField()
 
     def __str__(self):
