@@ -1,0 +1,115 @@
+<style>
+  /* styling applicable to all elements and css variables */
+  :root {
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #033a8b;
+    --bg-secondary: #141418;
+  }
+  /* body setup to fill whole viewport */
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+  }
+  /* main setup to leave space for navbar */
+  main {
+    margin-left: 5rem;
+    background-color: var(--bg-primary);
+    justify-content: left;
+    /* border: #ececec 1px solid; */
+  }
+
+  /* scrollbar styling */
+  body::-webkit-scrollbar {
+    width: 1rem;
+  }
+  body::-webkit-scrollbar-track {
+    background: var(--text-primary);
+  }
+  body::-webkit-scrollbar-thumb {
+    background: var(--bg-secondary);
+  }
+
+  /* navbar styling */
+  .navbar {
+    width: 5rem;
+    height: 100vh; /* 100% of the viewport height */
+    position: fixed; /* Stay in place */
+    background-color: var(--bg-secondary);
+    transition: width 0.3s ease;
+    z-index: 300;
+  }
+  .navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+  .nav-item {
+    width: 100%;
+    transition: width 0.3s ease;
+  }
+
+  .nav-item:last-child {
+    margin-top: auto;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    width: 100%;
+    color: var(--text-primary);
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.5);
+    transition: width 0.3s ease;
+  }
+  .link-text {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .nav-link:hover {
+    filter: grayscale(0%) opacity(1);
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    /* width: 16rem; */
+  }
+  .nav-link svg {
+    min-width: 2rem;
+    margin: 0 1.5rem;
+    transition: width 0.3s ease;
+  }
+  .navlink-text {
+    display: none;
+    margin-left: 1rem;
+  }
+  .navbar:hover {
+    /* background-color: #1a83ff; */
+    width: 16rem;
+  }
+
+  .navbar:hover .navlink-text {
+    /* background-color: #1a83ff; */
+    display: block;
+    width: 100%;
+    z-index: 300;
+    transition: 0.7s ease;
+  }
+
+  .dropdown-content {
+    display: none;
+  }
+  .nav-dropdown:hover .dropdown-content {
+    display: block;
+  }
+</style>

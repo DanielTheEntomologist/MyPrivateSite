@@ -1,6 +1,6 @@
 {% load static %} {% load markdown_extras %}
 <!-- post_display.html -->
-<div class="container">
+<div class="container" style="margin: 0px">
   <!-- Title -->
   <h1>{{ post.title }}</h1>
 
@@ -16,7 +16,7 @@
         />
         {% endif %}
       </div> -->
-      <div class="col-md-9">
+      <div class="col-md-12">
         <p>
           <strong>by:</strong> {{ post.author }}
           <strong>created:</strong> {{post.created_at|date:"F d, Y" }}
