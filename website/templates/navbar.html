@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar" id="navbar">
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="{% url 'index' %}">
@@ -14,7 +14,12 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'experiments' %}">
+      <a
+        class="nav-link"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        href=""
+      >
         <svg
           style="scale: 1.3"
           xmlns="http://www.w3.org/2000/svg"
@@ -28,6 +33,20 @@
         </svg>
         <span class="navlink-text">Showpieces</span>
       </a>
+    </li>
+    <li class="nav-item submenu">
+      <div id="collapseOne" class="collapse">
+        <!-- Example list -->
+        <ul class="">
+          {% for category in categories %}
+
+          <!--prettier-ignore-->
+          <li class="submenu-item nav-link" > <a   class="navlink-text"  href="{% url 'category' slug=category.slug %}">{{ category.title }}</a> </li>
+
+          {% endfor %}
+          <!-- prettier-ignore-attribute -->
+        </ul>
+      </div>
     </li>
 
     <li class="nav-item">

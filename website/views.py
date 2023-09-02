@@ -10,22 +10,42 @@ def welcome(request):
 
 def index(request):
     """View index page for now only with Daniel's page"""
-    return render(request, template_name="tower.html")
+    
+    # get all categories
+    categories = Category.objects.all()
+    
+    context = {
+        'categories': categories
+    }
+    context["categories"] = categories
+    return render(request, template_name="tower.html", context=context)
 
 def experiments(request):
     return render(request, template_name="experiments.html")
 
 def aboutme(request):
-    return render(request, template_name="aboutme.html")
+    categories = Category.objects.all()
+    context = {}
+    context["categories"] = categories
+    return render(request, template_name="aboutme.html",context=context)
 
 def tower(request):
-    return render(request, template_name="tower.html")
+    categories = Category.objects.all()
+    context = {}
+    context["categories"] = categories
+    return render(request, template_name="tower.html",context=context)
 
 def tower_explanation(request):
-    return render(request, template_name="tower_explanation.html")
+    categories = Category.objects.all()
+    context = {}
+    context["categories"] = categories
+    return render(request, template_name="tower_explanation.html",context=context)
 
 def heroku_explanation(request):
-    return render(request, template_name="heroku_explanation.html")
+    categories = Category.objects.all()
+    context = {}
+    context["categories"] = categories
+    return render(request, template_name="heroku_explanation.html",context=context)
 
 def advent_explanation(request):
     return render(request, template_name="advent_explanation.html")
@@ -50,7 +70,7 @@ from .models import Post, Author, Category
 def blog(request):
     """View blog page with all posts"""
     posts = Post.objects.all()
-    categories = Category.objects.all()[0:3]
+    categories = Category.objects.all()
     featured = Post.objects.filter(featured=True)
     latest = Post.objects.order_by('-timestamp')[0:3]
     context= {
@@ -62,17 +82,22 @@ def blog(request):
     
 def post(request,slug):
     post = Post.objects.get(slug=slug)
+    categories = Category.objects.all()
     context = {
         'post': post,
     }
+    context["categories"] = categories
     return render(request, 'post.html', context)
 
 def category(request,slug):
     category = Category.objects.get(slug=slug)
+    categories = Category.objects.all()
     posts_in_category = Post.objects.filter(category=category)
+    
     context = {
         'posts': posts_in_category,
     }
+    context["categories"] = categories
     return render(request, 'category.html', context)
 
 def categories(request):
