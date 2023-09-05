@@ -16,8 +16,9 @@ def index(request):
     
     context = {
         'categories': categories
+        ,"display_navigation_hints":True
     }
-    context["categories"] = categories
+    
     return render(request, template_name="tower.html", context=context)
 
 def experiments(request):

@@ -13,8 +13,8 @@ class Author(models.Model):
         return self.user.username
     
 class Category(models.Model):
-    title = models.CharField(max_length=20)
-    sub_title = models.CharField(max_length=20)
+    title = models.CharField(max_length=25)
+    sub_title = models.CharField(max_length=25)
     slug = models.SlugField()
     thumbnail = models.ImageField()
     

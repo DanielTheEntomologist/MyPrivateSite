@@ -5,7 +5,7 @@
     font-family: "Roboto", sans-serif;
     --text-primary: #b6b6b6;
     --text-secondary: #ececec;
-    --bg-primary: #033a8b;
+    --bg-primary: #26292c;
     --bg-secondary: #141418;
   }
   /* body setup to fill whole viewport */
@@ -40,8 +40,8 @@
     position: fixed; /* Stay in place */
     flex-direction: column;
     justify-content: left;
-    overflow-x: hidden; /* Disable horizontal scroll*/
-    overflow-y: auto;
+    /* overflow-x: hidden; */
+    /* overflow-y: auto; */
     background-color: var(--bg-secondary);
     transition: 0.3s ease-in-out;
     z-index: 300;
@@ -59,10 +59,15 @@
   }
   .nav-item {
     width: 100%;
+    align-items: center;
     /* transition: 3s ease; */
   }
 
-  .nav-item:last-child {
+  /* .nav-item:last-child {
+    margin-top: auto;
+  } */
+
+  .nav-item-first_bottom {
     margin-top: auto;
   }
 
@@ -96,28 +101,38 @@
     white-space: nowrap;
     /* display: block; */
     margin-left: 1rem;
-    width: 16 rem;
+    overflow: hidden;
+    width: 0 rem;
   }
   .navbar:hover {
     /* on hover reveal all the elements and categories */
-    width: 16rem;
+    width: 14rem;
   }
 
   .submenu {
     /* By default the submenu is hidden */
     max-height: 0;
-    overflow-y: hidden;
-    overflow-x: hidden;
+
+    /* overflow-x: clip; */
+    overflow-y: clip;
     /* Revealing and hiding the menu is not instanteanous */
     transition: 0.3s ease-in-out;
   }
 
+  .submenu-list {
+    /*No margin or padding on the left*/
+    padding-left: 0;
+  }
+
   .submenu-item {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     /* Prevent text wrapping when parent element are resizing - results in text jumping aroung */
     white-space: nowrap;
-
+    /* offset link text to push it  */
+    padding-left: 0.5rem;
+    /* overflow-y: hidden; */
+    /* overflow-x: hidden; */
     height: 3rem;
     width: 100%;
     color: var(--text-primary);
@@ -142,5 +157,34 @@
     width: 10 rem;
     z-index: 300;
     /* transition: 0.3s ease; */
+  }
+
+  .anchor {
+    position: relative;
+  }
+  .navigation-tooltip {
+    position: absolute;
+    background-color: var(--bg-secondary);
+
+    border-radius: 1rem;
+    padding: 5px 10px;
+
+    /* align to the right from parent container (anchor) and in the center vertically*/
+    left: 100%;
+    top: 50%;
+    width: 10rem;
+    transform: translateY(-50%);
+    /* Separate from the navbar */
+    margin-left: 0.5rem;
+
+    /* align the content horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navigation-tooltip-icon {
+    position: relative;
+    height: 5rem;
   }
 </style>
