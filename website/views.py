@@ -2,27 +2,20 @@ from django.shortcuts import render
 
 # Create your views here.
 
-# todo - programatically create views 
-
-def welcome(request):
-    """View landing page with choice of people"""
-    return render(request, template_name="welcome.html")
-
 def index(request):
     """View index page for now only with Daniel's page"""
-    
+    display_navigation_tips = request.session.get('display_navigation_tips',"displaynavigationtips defaulted")
+
     # get all categories
     categories = Category.objects.all()
     
+    
     context = {
         'categories': categories
-        ,"display_navigation_hints":True
+        ,"display_navigation_hints":display_navigation_tips
     }
     
     return render(request, template_name="index.html", context=context)
-
-def experiments(request):
-    return render(request, template_name="experiments.html")
 
 def aboutme(request):
     categories = Category.objects.all()
@@ -30,41 +23,7 @@ def aboutme(request):
     context["categories"] = categories
     return render(request, template_name="aboutme.html",context=context)
 
-def tower(request):
-    categories = Category.objects.all()
-    context = {}
-    context["categories"] = categories
-    return render(request, template_name="tower.html",context=context)
-
-def tower_explanation(request):
-    categories = Category.objects.all()
-    context = {}
-    context["categories"] = categories
-    return render(request, template_name="tower_explanation.html",context=context)
-
-def heroku_explanation(request):
-    categories = Category.objects.all()
-    context = {}
-    context["categories"] = categories
-    return render(request, template_name="heroku_explanation.html",context=context)
-
-def advent_explanation(request):
-    return render(request, template_name="advent_explanation.html")
-
 import markdown
-
-def test_dynamic_view(request):
-    # read markdown file
-    with open("website/static/md/example.md", "r") as f:
-        markdown_text = f.read()
-
-    html = markdown.markdown(markdown_text)
-
-    context = {
-        'dynamic_content': html,  # Replace with your dynamic content
-    }
-
-    return render(request, template_name="test_dynamic_view.html", context=context)
 
 from .models import Post, Author, Category
 
@@ -109,3 +68,21 @@ def categories(request):
         'categories': categories,
     }
     return render(request, 'categories.html', context)
+
+from django.http import JsonResponse
+
+def toggle_navigation_tips(request):
+    if request.method == 'POST':
+        previous_flag = request.session.get("display_navigation_tips",None)
+        if previous_flag:
+            
+            request.session['display_navigation_tips'] = False
+        else:
+            
+            request.session['display_navigation_tips'] = True
+        return JsonResponse({'message': 'Session parameter updated successfully'})
+    
+    return render(request, 'toggle_navigation_tips.html')
+    
+    
+

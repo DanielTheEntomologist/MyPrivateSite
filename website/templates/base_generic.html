@@ -28,6 +28,9 @@
   <body>
     {% include "navbar.html" %}
 
-    <main>{% block content %}{% endblock %}</main>
+    <main>
+      <!-- <div>first {{request.session.display_navigation_tips}} last</div> -->
+      {% block content %}{% endblock %}
+    </main>
   </body>
 </html>

@@ -14,6 +14,7 @@ urlpatterns = [
     path('post/<slug>/', views.post, name = 'post'),
     path('category', views.categories, name='categories'),
     path('category/<slug>/', views.category, name = 'category'),
+    path('toggle_navigation_tips', views.toggle_navigation_tips, name='toggle_navigation_tips'),
 ]
 
 if settings.DEBUG:
