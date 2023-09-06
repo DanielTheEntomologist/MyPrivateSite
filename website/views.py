@@ -19,7 +19,7 @@ def index(request):
         ,"display_navigation_hints":True
     }
     
-    return render(request, template_name="tower.html", context=context)
+    return render(request, template_name="index.html", context=context)
 
 def experiments(request):
     return render(request, template_name="experiments.html")
