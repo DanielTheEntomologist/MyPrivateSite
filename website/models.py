@@ -17,7 +17,7 @@ class Category(models.Model):
     sub_title = models.CharField(max_length=25)
     slug = models.SlugField()
     thumbnail = models.ImageField()
-    advertisment = models.CharField(max_length=200,default=None,blank=True,null=True)
+    advertisement = models.CharField(max_length=200,default=None,blank=True,null=True)
     
     def __str__(self):
         return self.title
@@ -30,7 +30,7 @@ class Category(models.Model):
             sub_title = "Miscellanous ideas",
             slug = "misc",
             thumbnail = None,
-            advertisment = None
+            advertisement = None
             )
         )
         return category.pk
