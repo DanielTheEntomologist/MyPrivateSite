@@ -16,7 +16,7 @@ class Category(models.Model):
     title = models.CharField(max_length=25)
     sub_title = models.CharField(max_length=25)
     slug = models.SlugField()
-    thumbnail = models.ImageField()
+    thumbnail = models.ImageField(null=True,blank=True)
     advertisement = models.CharField(max_length=200,default=None,blank=True,null=True)
     
     def __str__(self):
@@ -43,7 +43,7 @@ class Post(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
     content = models.TextField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    thumbnail = models.ImageField()
+    thumbnail = models.ImageField(null=True,blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE,default=Category.get_default_pk())
     featured = models.BooleanField()
     display_order = models.IntegerField(default=99)
