@@ -49,9 +49,9 @@
           <!--prettier-ignore-->
           <li class="submenu-item nav-link anchor" >
             
-            
-            <div class="navigation-tooltip collapse multi-collapse {% if request.session.display_navigation_tips %}show{% endif %}">{% url 'category' slug=category.slug %}</div>
-            
+            {% if category.advertisement is not None %}
+            <div class="navigation-tooltip collapse multi-collapse {% if request.session.display_navigation_tips %}show{% endif %}">{{category.advertisement }}</div>
+            {% endif %}
             
              <a   class="navlink-text"  href="{% url 'category' slug=category.slug %}">{{ category.title }}</a> </li>
 
@@ -106,7 +106,7 @@
           />
         </svg>
 
-        <span class="navlink-text">Welcome</span>
+        <span class="navlink-text">A placeholder</span>
       </a>
     </li>
   </ul>
@@ -117,12 +117,13 @@
     $("#toggle_navtips").click(function () {
       // Send an AJAX request to update the session parameter
       $.ajax({
-        url: "toggle_navigation_tips", // URL to the view that updates the session
+        url: "toggle-navigation-tips", // URL to the view that updates the session
         type: "POST",
         data: { toggle_navtips: true, csrfmiddlewaretoken: "{{ csrf_token }}" },
         success: function (data) {
           // Update the session parameter value on the page
-          $("#session-parameter-value").text(data.session_parameter_value);
+          // $("#session-parameter-value").text(data.session_parameter_value);
+          console.log("displaying navtips toggled");
         },
         error: function () {
           alert("Error occurred while updating session parameter.");

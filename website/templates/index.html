@@ -4,24 +4,37 @@
 <script src="{% static 'js/tower.js' %}" defer></script>
 {% endblock %} {% block content %}
 <div class="tower-container">
-  <div
-    class="announcement"
-    style="
-      backdrop-filter: blur(5px);
-      mask: linear-gradient(transparent, black, transparent);
-    "
-  >
-    <h1 style="text-align: center; color: #000">Site Under Construction</h1>
+  <div class="row">
+    <div class="col-md-8 col-sm-6"></div>
+    <div class="announcement col-md-4 col-sm-6">
+      <h1 style="text-align: center; color: #000">Site Under Construction</h1>
 
-    <div style="text-align: center; color: #000">
-      Feel free to explore what is already here. Check back later for updates.
+      <div style="color: black">
+        <strong
+          >If You are a recruiter and want to see some of my work, turn on the
+          <button
+            data-bs-toggle="collapse"
+            data-bs-target=".multi-collapse"
+            id="toggle_navtips"
+            name="toggle_navtips"
+            value="switch"
+          >
+            Navigation Tips
+          </button>
+          and explore. Or simply grab my CV from
+
+          <button>
+            <a href="{% url 'aboutme' %}" style="color: black">About Me</a>
+          </button>
+          page.
+        </strong>
+      </div>
+      <div style="color: black">
+        <strong>If You are not a recruiter, you know where to go :-)</strong>
+      </div>
     </div>
-    <a class="link-text" href="{% url 'aboutme' %}"
-      >Grab my CV from About Me page.</a
-    >
   </div>
-
-  <div class="farcloud box">
+  <div class="farcloud box" style="position: absolute">
     <svg>
       <path
         d="M 25,60 
@@ -35,7 +48,7 @@
       />
     </svg>
   </div>
-  <div class="closecloud box">
+  <div class="closecloud box" style="position: absolute">
     <svg width="100" height="125">
       <path
         d="M 25,60 
@@ -50,5 +63,6 @@
     </svg>
   </div>
   <div class="ground"></div>
+
+  {% endblock %}
 </div>
-{% endblock %}

@@ -52,7 +52,7 @@ def post(request,slug):
 def category(request,slug):
     category = Category.objects.get(slug=slug)
     categories = Category.objects.all()
-    posts_in_category = Post.objects.filter(category=category)
+    posts_in_category = Post.objects.filter(category=category).order_by("display_order")
     
     context = {
         'posts': posts_in_category,
@@ -71,7 +71,7 @@ def categories(request):
 
 from django.http import JsonResponse
 
-def toggle_navigation_tips(request):
+def toggle_navigation_tips(request,slug=None):
     if request.method == 'POST':
         previous_flag = request.session.get("display_navigation_tips",None)
         if previous_flag:
@@ -82,7 +82,7 @@ def toggle_navigation_tips(request):
             request.session['display_navigation_tips'] = True
         return JsonResponse({'message': 'Session parameter updated successfully'})
     
-    return render(request, 'toggle_navigation_tips.html')
+    # return render(request, 'toggle_navigation_tips.html')
     
     
 

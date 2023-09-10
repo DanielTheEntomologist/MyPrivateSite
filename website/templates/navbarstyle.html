@@ -166,7 +166,7 @@
     position: absolute;
     background-color: var(--bg-secondary);
 
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     padding: 5px 10px;
 
     /* align to the right from parent container (anchor) and in the center vertically*/
@@ -179,8 +179,12 @@
 
     /* align the content horizontally */
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
+    /* allow wrapping of text content */
+    white-space: normal;
+
+    transition: 0.3s;
   }
 
   .navigation-tooltip-icon {

@@ -46,6 +46,7 @@ class Post(models.Model):
     thumbnail = models.ImageField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE,default=Category.get_default_pk())
     featured = models.BooleanField()
+    display_order = models.IntegerField(default=99)
 
     def __str__(self):
         return self.title
