@@ -21,19 +21,6 @@ class Category(models.Model):
     
     def __str__(self):
         return self.title
-    
-    @classmethod
-    def get_default_pk(cls):
-        category, created = cls.objects.get_or_create(
-            title='Other', 
-            defaults=dict(
-            sub_title = "Miscellanous ideas",
-            slug = "misc",
-            thumbnail = None,
-            advertisement = None
-            )
-        )
-        return category.pk
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -44,7 +31,7 @@ class Post(models.Model):
     content = models.TextField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     thumbnail = models.ImageField(null=True,blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE,default=Category.get_default_pk())
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,null=True,blank=True)
     featured = models.BooleanField()
     display_order = models.IntegerField(default=99)
 
