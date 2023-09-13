@@ -12,7 +12,7 @@ def add_example_Category(apps, schema_editor):
                         sub_title = "Default Category",
                         slug = "other",
                         thumbnail = None,
-                        advertisement = "Miscellaneous"
+                        advertisement = None
                         )
     category.save()
 
