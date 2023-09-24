@@ -46,7 +46,7 @@ else:
 
 # it is possible to drop allow all hosts when hosting on heroku
 # for now I will leave it as it is
-ALLOWED_HOSTS = ['danielb-test-site.herokuapp.com','www.borowiecki.info','borowiecki.info',"127.0.0.1","localhost"]
+ALLOWED_HOSTS = ['danieb-website-eu-0be2b9c8638a.herokuapp.com','www.borowiecki.info','borowiecki.info',"127.0.0.1","localhost"]
 
 
 # Application definition
