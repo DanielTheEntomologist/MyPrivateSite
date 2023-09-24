@@ -41,7 +41,7 @@ else:
         import dev_secret_key
         SECRET_KEY = dev_secret_key.SECRET_KEY
     except ImportError:
-        SECRET_KEY = secrets.token_urlsafe(nbytes=64),
+        SECRET_KEY = secrets.token_urlsafe(nbytes=64)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if IS_HEROKU_APP:
