@@ -31,12 +31,17 @@ IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-7(p(2===od*w8q!vpmqa1^^qb#^qc$_hv2#1e_7m!5jwbf35!v'
-# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
-SECRET_KEY = os.environ.get(
-    "DJANGO_SECRET_KEY",
-    default=secrets.token_urlsafe(nbytes=64),
-)
+if IS_HEROKU_APP:
+    SECRET_KEY = os.environ.get(
+        "DJANGO_SECRET_KEY",
+        default=secrets.token_urlsafe(nbytes=64),
+    )
+else:
+    try: 
+        import dev_secret_key
+        SECRET_KEY = dev_secret_key.SECRET_KEY
+    except ImportError:
+        SECRET_KEY = secrets.token_urlsafe(nbytes=64),
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if IS_HEROKU_APP:
