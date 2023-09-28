@@ -30,6 +30,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 
 
+SECURE_SSL_REDIRECT = True # redirect all http requests to https
+
 # SECURITY WARNING: keep the secret key used in production secret!
 if IS_HEROKU_APP:
     SECRET_KEY = os.environ.get(
