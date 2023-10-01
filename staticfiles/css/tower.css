@@ -8,22 +8,26 @@
   background-color: rgb(197, 255, 255);
 }
 
-.announcementcontainer {
-  height: 100%;
-  width: 100%;
+.announcement {
+  /* height: 100%; */
+  /* width: 100%; */
   /* background-color: rgb(255, 255, 255); */
-
+  border-radius: 10px;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  position: absolute;
+  /* position: absolute; */
   z-index: 199;
 
-  
   backdrop-filter: blur(5px);
-  mask: linear-gradient(transparent, black, transparent);
-  
+  /* mask: linear-gradient(transparent, black, transparent); */
+  /* mask: drop-shadow(0 0 0.75rem black); */
+  /* drop-shadow: 0 0 8px 8px white inset; */
+    
 }
 
 .layer {

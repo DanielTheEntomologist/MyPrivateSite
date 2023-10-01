@@ -23,7 +23,7 @@ def aboutme(request):
     context["categories"] = categories
     return render(request, template_name="aboutme.html",context=context)
 
-import markdown
+# import markdown
 
 from .models import Post, Author, Category
 

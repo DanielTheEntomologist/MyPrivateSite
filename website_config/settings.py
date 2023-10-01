@@ -29,20 +29,31 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # https://devcenter.heroku.com/articles/heroku-ci#immutable-environment-variables
 IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 
+if IS_HEROKU_APP:
+    SECURE_SSL_REDIRECT = True # redirect all http requests to https
+else:
+    SECURE_SSL_REDIRECT = False # for development purposes only
+    # as django local server does not support https out of the box. 
+    # Any production deployment should have SSL enabled.
 
-SECURE_SSL_REDIRECT = True # redirect all http requests to https
 
 # SECURITY WARNING: keep the secret key used in production secret!
 if IS_HEROKU_APP:
     SECRET_KEY = os.environ.get(
         "DJANGO_SECRET_KEY",
-        default=secrets.token_urlsafe(nbytes=64),
+        default=secrets.token_urlsafe(nbytes=64), 
+        # if no secret key is available in enironment variables, generate a new one
+        # note: this is not a good practice, as the secret key will change with every
+        # server restart. If server restarts, all session data 
+        # will stop being attached to correct secrets.
+        # among other things CSFR tokens will be treated as invalid by the server with new SECRET_KEY.
     )
 else:
     try: 
         import dev_secret_key
         SECRET_KEY = dev_secret_key.SECRET_KEY
     except ImportError:
+        print("No dev_secret_key.py file found. Generating a new secret key.")
         SECRET_KEY = secrets.token_urlsafe(nbytes=64)
 
 # SECURITY WARNING: don't run with debug turned on in production!
