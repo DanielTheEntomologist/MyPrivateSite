@@ -1,5 +1,5 @@
-This repository contains source code of my private site.
-Created using Django, Bootstrap CSS and Vanilla JS,
+This repository contains source code of [my private site](borowiecki.info).
+Created using Django, Bootstrap CSS and Vanilla JS.
 #
 This repository contains the source code for my personal site. Built with Django, Bootstrap CSS, and Vanilla JS, it is my first foray into web development.
 
