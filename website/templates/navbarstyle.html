@@ -73,7 +73,7 @@
 
   .nav-link {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     height: 5rem;
     width: 100%;
     color: var(--text-primary);
@@ -90,6 +90,7 @@
   }
   .nav-link svg {
     min-width: 2rem;
+    max-width: 2rem;
     margin: 0 1.5rem;
     color: var(--text-primary);
     transition: width 0.3s ease;
@@ -103,6 +104,11 @@
     margin-left: 1rem;
     overflow: hidden;
     width: 0 rem;
+    display: flex;
+    align-content: center;
+  }
+  .navlink-text-inside {
+    display: block;
   }
   .navbar:hover {
     /* on hover reveal all the elements and categories */
