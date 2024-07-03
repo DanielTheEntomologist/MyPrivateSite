@@ -2,8 +2,9 @@
 {% extends "base_generic.html" %}
 {% load static %}
 {% block content %}
-    {% for post in posts %} 
-        {% include "post_display.html" with post=post %}
-    {% endfor %}
+<div class="container py-5">
+  {% for post in posts %} {% include "post_display.html" with post=post %}
+  {%endfor %}
+</div>
 {% endblock %}
 <!-- prettier-ignore-attribute -->
