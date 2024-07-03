@@ -7,30 +7,28 @@
   <div class="row">
     <div class="col-md-8 col-sm-6"></div>
     <div class="announcement col-md-4 col-sm-6">
-      <h1 style="text-align: center; color: #000">Site Under Construction</h1>
+      <h1 style="text-align: center; color: #000">
+        Site Awaiting Reconstruction
+      </h1>
 
       <div style="color: black">
-        <strong
-          >If You are a recruiter and want to see some of my work, turn on the
-          <button
-            data-bs-toggle="collapse"
-            data-bs-target=".multi-collapse"
-            id="toggle_navtips"
-            name="toggle_navtips"
-            value="switch"
-          >
-            Navigation Tips
-          </button>
-          and explore. Or simply grab my CV from
-
-          <button>
-            <a href="{% url 'aboutme' %}" style="color: black">About Me</a>
-          </button>
-          page.
+        <strong>
+          <div>
+            If You interested in my web development skills, Take a look at my
+            <a href="{% url 'category' slug='webdev-projects' %}">
+              <button>Webdev Projects</button></a
+            >
+            This site was created before I started the bootcamp. Version 2.0 is
+            on the way.
+          </div>
+          <div>
+            For all others, You can grab my CV from
+            <button>
+              <a href="{% url 'aboutme' %}" style="color: black">About Me</a>
+            </button>
+            page.
+          </div>
         </strong>
-      </div>
-      <div style="color: black">
-        <strong>If You are not a recruiter, you know where to go :-)</strong>
       </div>
     </div>
   </div>
