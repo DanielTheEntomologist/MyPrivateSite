@@ -18,6 +18,7 @@ class Category(models.Model):
     slug = models.SlugField()
     thumbnail = models.ImageField(null=True,blank=True)
     advertisement = models.CharField(max_length=200,default=None,blank=True,null=True)
+    visible = models.BooleanField(default=True)
     
     def __str__(self):
         return self.title

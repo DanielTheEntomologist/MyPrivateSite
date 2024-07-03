@@ -3,11 +3,12 @@
 {% load static %}
 {% block content %}
     {% for category in categories %}
+    {% if category.visible %}
 <div>
   <strong>Category title</strong> {{ category.title }}
   <strong>Category subtitle</strong> {{ category.title }}
   <!--prettier-ignore-->
   <a href="{% url 'category' slug=category.slug %}">See Posts in this Category</a>
 </div>
-{% endfor %} {% endblock content %}
+{% else %} {% endif %} {% endfor %} {% endblock content %}
 <!-- prettier-ignore-attribute -->

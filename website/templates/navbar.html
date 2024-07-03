@@ -46,8 +46,7 @@
     <li class="nav-item submenu">
       <div id="collapseOne" class="collapse">
         <ul class="submenu-list">
-          {% for category in categories %}
-
+          {% for category in categories %} {% if category.visible %}
           <!--prettier-ignore-->
           <li class="submenu-item nav-link anchor" >
             
@@ -56,8 +55,7 @@
             {% endif %}
             
              <a   class="navlink-text"  href="{% url 'category' slug=category.slug %}">{{ category.title }}</a> </li>
-
-          {% endfor %}
+          {% endif %} {% endfor %}
           <!-- prettier-ignore-attribute -->
         </ul>
       </div>
