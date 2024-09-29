@@ -62,26 +62,28 @@ def post(request,slug):
 
 def category(request,slug):
     category = Category.objects.get(slug=slug)
-    categories = Category.objects.all()
-    posts_in_category = Post.objects.filter(category=category).order_by("display_order")
-    
     local_context = {
-        'posts': posts_in_category,
-        "categories": categories
+        'posts': Post.objects.filter(category=category).order_by("display_order"),
+        "categories": Category.objects.all()
     }
     context = {**global_context, **local_context}
     return render(request, 'category.html', context)
 
 def categories(request):
-    #get all categories
-    categories = Category.objects.all()
-    
     local_context = {
-        'categories': categories,
+        'categories': Category.objects.all(),
     }
     context = {**global_context, **local_context}
     return render(request, 'categories.html', context)
 
+def posts(request):
+    
+    local_context = {
+        'posts': Post.objects.all(),
+        'categories': Category.objects.all(),
+    }
+    context = {**global_context, **local_context}
+    return render(request, 'category.html', context)
 
 from django.http import JsonResponse
 

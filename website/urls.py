@@ -13,10 +13,12 @@ urlpatterns = [
 
     path('aboutme', views.aboutme, name='aboutme'),
 
-    path('post', views.post, name='post'),
+    path('post', views.posts, name='posts'),
+    path('post/', views.posts, name='posts'),
     path('post/<slug>/', views.post, name = 'post'),
 
     path('category', views.categories, name='categories'),
+    path('category/', views.categories, name='categories'),
     path('category/<slug>/', views.category, name = 'category'),
     
     path('toggle-navigation-tips', views.toggle_navigation_tips, name='toggle_navigation_tips'),
