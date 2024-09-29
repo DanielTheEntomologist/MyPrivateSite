@@ -1,5 +1,33 @@
-.sidebar-nav {
-    margin-top: 20px;
-    padding: 0;
-    list-style: none;
-  }
+/* Custom styles for your website */
+
+.navbar-nav .nav-item .nav-link,
+.navbar-nav .nav-item .dropdown-item,
+.navbar-nav .nav-item .accordion-link {
+  color: #555;
+  padding: 10px 15px;
+  display: block;
+  text-decoration: none;
+}
+
+.navbar-nav .nav-item .nav-link:hover,
+.navbar-nav .nav-item .dropdown-item:hover,
+.navbar-nav .nav-item .accordion-link:hover {
+  color: #000;
+  background-color: #f8f9fa;
+}
+
+.navbar-nav .nav-item .nav-link a,
+.navbar-nav .nav-item .dropdown-item a,
+.navbar-nav .nav-item .accordion-body .accordion-link {
+  padding: 10px 15px;
+  display: block;
+  text-decoration: none;
+}
+
+.accordion-body ul {
+  padding-left: 0;
+}
+
+.accordion-body ul li {
+  list-style: none;
+}

@@ -7,13 +7,18 @@ from django.conf import settings
 from website import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('index', views.index, name='index'),
+    path('', views.home, name='home'),
+    path('index', views.home, name='home'),
+    path('home', views.home, name='home'),
+
     path('aboutme', views.aboutme, name='aboutme'),
+
     path('post', views.post, name='post'),
     path('post/<slug>/', views.post, name = 'post'),
+
     path('category', views.categories, name='categories'),
     path('category/<slug>/', views.category, name = 'category'),
+    
     path('toggle-navigation-tips', views.toggle_navigation_tips, name='toggle_navigation_tips'),
     path('category/<slug>/toggle-navigation-tips', views.toggle_navigation_tips, name='toggle_navigation_tips'),
 ]
