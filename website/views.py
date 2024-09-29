@@ -20,8 +20,8 @@ def home(request):
     categories = Category.objects.all()
 
     local_context = {
-        'categories': categories
-        ,"display_navigation_hints":display_navigation_tips
+        'categories': categories,"display_navigation_hints":display_navigation_tips,
+        'page': 'home'
     }
     context = {**global_context, **local_context}
     
@@ -31,6 +31,8 @@ def aboutme(request):
     categories = Category.objects.all()
     context = global_context.copy()
     context["categories"] = categories
+    context["page"] = "aboutme"
+
     return render(request, template_name="aboutme.html",context=context)
 
 # import markdown
@@ -47,6 +49,7 @@ def blog(request):
         'object_list': featured,
         'latest': latest,
         'categories':categories,
+        "page": 'blog'
     }
     context = {**global_context, **local_context}
     return render(request, 'blog.html', context)
@@ -56,6 +59,7 @@ def post(request,slug):
     local_context = {
         'post': Post.objects.get(slug=slug),
         'categories': Category.objects.all(),
+        'page': 'blog'
     }
     context = {**global_context, **local_context}
     return render(request, 'post.html', context)
@@ -64,7 +68,8 @@ def category(request,slug):
     category = Category.objects.get(slug=slug)
     local_context = {
         'posts': Post.objects.filter(category=category).order_by("display_order"),
-        "categories": Category.objects.all()
+        "categories": Category.objects.all(),
+        'page': 'category'
     }
     context = {**global_context, **local_context}
     return render(request, 'category.html', context)
@@ -72,6 +77,7 @@ def category(request,slug):
 def categories(request):
     local_context = {
         'categories': Category.objects.all(),
+        'page': 'category'
     }
     context = {**global_context, **local_context}
     return render(request, 'categories.html', context)
@@ -81,6 +87,7 @@ def posts(request):
     local_context = {
         'posts': Post.objects.all(),
         'categories': Category.objects.all(),
+        'page': 'blog'
     }
     context = {**global_context, **local_context}
     return render(request, 'category.html', context)
