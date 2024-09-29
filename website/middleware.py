@@ -5,7 +5,7 @@
 #     def middleware(request):
 #         # Code to be executed for each request before
 #         # the view (and later middleware) are called.
-        
+
 #         response = get_response(request)
 
 #         # Code to be executed for each request/response after
@@ -15,18 +15,19 @@
 
 #     return middleware
 
+
 class GlobalContextMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
         self.global_context = {
-    "name": "Daniel",
-    "surname": "Borowiecki",
-    "title": "Daniel's Blog",
-    "author": "Daniel",
-    "description": "This is a blog about Python and Django",
-    "keywords": "Python, Django, Web Development",
-    "page": "home",
-}
+            "name": "Daniel",
+            "surname": "Borowiecki",
+            "title": "Daniel's Blog",
+            "author": "Daniel",
+            "description": "This is a blog about Python and Django",
+            "keywords": "Python, Django, Web Development",
+            "page": "home",
+        }
 
     def __call__(self, request):
         response = self.get_response(request)
@@ -39,5 +40,5 @@ class GlobalContextMiddleware:
                     response.context_data[key] = value
         else:
             response.context_data = self.global_context
-            
+
         return response

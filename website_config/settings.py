@@ -31,10 +31,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 
 if IS_HEROKU_APP:
-    SECURE_SSL_REDIRECT = True # redirect all http requests to https
+    SECURE_SSL_REDIRECT = True  # redirect all http requests to https
 else:
-    SECURE_SSL_REDIRECT = False # for development purposes only
-    # as django local server does not support https out of the box. 
+    SECURE_SSL_REDIRECT = False  # for development purposes only
+    # as django local server does not support https out of the box.
     # Any production deployment should have SSL enabled.
 
 
@@ -42,16 +42,17 @@ else:
 if IS_HEROKU_APP:
     SECRET_KEY = os.environ.get(
         "DJANGO_SECRET_KEY",
-        default=secrets.token_urlsafe(nbytes=64), 
+        default=secrets.token_urlsafe(nbytes=64),
         # if no secret key is available in enironment variables, generate a new one
         # note: this is not a good practice, as the secret key will change with every
-        # server restart. If server restarts, all session data 
+        # server restart. If server restarts, all session data
         # will stop being attached to correct secrets.
         # among other things CSFR tokens will be treated as invalid by the server with new SECRET_KEY.
     )
 else:
-    try: 
+    try:
         import dev_secret_key
+
         SECRET_KEY = dev_secret_key.SECRET_KEY
     except ImportError:
         print("No dev_secret_key.py file found. Generating a new secret key.")
@@ -65,57 +66,63 @@ else:
 
 # it is possible to drop allow all hosts when hosting on heroku
 # for now I will leave it as it is
-ALLOWED_HOSTS = ['danieb-website-eu-0be2b9c8638a.herokuapp.com','www.borowiecki.info','borowiecki.info',"127.0.0.1","localhost"]
+ALLOWED_HOSTS = [
+    "danieb-website-eu-0be2b9c8638a.herokuapp.com",
+    "www.borowiecki.info",
+    "borowiecki.info",
+    "127.0.0.1",
+    "localhost",
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
     # 'django.contrib.sites', # sites framework was attempted to be used for redirection
-    # from daniel.borowiecki.info to borowiecki.info 
+    # from daniel.borowiecki.info to borowiecki.info
     # but I did not manage to make it work. Instead I used a redirect in the DNS settings.
     # my custom app
-    'website',
+    "website",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware", # static file serving middleware
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # static file serving middleware
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # cusom middleware
-    'website.middleware.GlobalContextMiddleware',
+    "website.middleware.GlobalContextMiddleware",
 ]
 
-ROOT_URLCONF = 'website_config.urls'
+ROOT_URLCONF = "website_config.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'website_config.wsgi.application'
+WSGI_APPLICATION = "website_config.wsgi.application"
 
 
 # Database
@@ -141,30 +148,30 @@ if IS_HEROKU_APP:
             ssl_require=True,
         ),
     }
-elif 'test' in sys.argv:
+elif "test" in sys.argv:
 
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "django_test_db",
+            "USER": "django",
+            "PASSWORD": "PISSWORT",
+            "HOST": "localhost",
+            "PORT": "",
+        },
+    }
 
-    DATABASES = {'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_test_db',
-        'USER': 'django',
-        'PASSWORD': 'PISSWORT',
-        'HOST': 'localhost',
-        'PORT': '',
-        },}
-    
 else:
-    DATABASES = {'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myproject',
-        'USER': 'myprojectuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
-        },}
-
-
-
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "myproject",
+            "USER": "myprojectuser",
+            "PASSWORD": "password",
+            "HOST": "localhost",
+            "PORT": "",
+        },
+    }
 
 
 # Password validation
@@ -172,16 +179,16 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -189,9 +196,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -207,16 +214,16 @@ USE_TZ = True
 # IMG_ROOT = BASE_DIR / STATIC_ROOT / "images"
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [#BASE_DIR / "website/static",
-                    BASE_DIR / "website/static/images",
-                    BASE_DIR / "website/static/css",
-                    BASE_DIR / "website/static/js",
-                    BASE_DIR / "website/static/md",
-                    ]
+STATIC_URL = "static/"
+STATICFILES_DIRS = [  # BASE_DIR / "website/static",
+    BASE_DIR / "website/static/images",
+    BASE_DIR / "website/static/css",
+    BASE_DIR / "website/static/js",
+    BASE_DIR / "website/static/md",
+]
 # Media settings
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # in the future possibly enable compression of static file as Heroku Example recommends.
 # will have to understand serving static files better first.
@@ -236,4 +243,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
