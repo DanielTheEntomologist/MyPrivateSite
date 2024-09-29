@@ -1,5 +1,4 @@
-# from django.shortcuts import render
-from django.template.response import TemplateResponse as render
+from django.template.response import TemplateResponse
 
 global_context = {
     "name": "Daniel",
@@ -26,7 +25,7 @@ def home(request):
     }
     
     
-    return render(request, "home.html", context)
+    return TemplateResponse(request, "home.html", context)
 
 def aboutme(request):
     categories = Category.objects.all()
@@ -34,7 +33,7 @@ def aboutme(request):
     context["categories"] = categories # type: ignore
     context["page"] = "aboutme"
 
-    return render(request, "aboutme.html",context)
+    return TemplateResponse(request, "aboutme.html",context)
 
 # import markdown
 
@@ -53,7 +52,7 @@ def blog(request):
         "page": 'blog'
     }
     
-    return render(request, 'blog.html', context)
+    return TemplateResponse(request, 'blog.html', context)
     
 def post(request,slug):
     
@@ -63,7 +62,7 @@ def post(request,slug):
         'page': 'blog'
     }
     
-    return render(request, 'post.html', context)
+    return TemplateResponse(request, 'post.html', context)
 
 def category(request,slug):
     category = Category.objects.get(slug=slug)
@@ -73,7 +72,7 @@ def category(request,slug):
         'page': 'category'
     }
     
-    return render(request, 'category.html', context)
+    return TemplateResponse(request, 'category.html', context)
 
 def categories(request):
     context = {
@@ -81,7 +80,7 @@ def categories(request):
         'page': 'category'
     }
     
-    return render(request, 'categories.html', context)
+    return TemplateResponse(request, 'categories.html', context)
 
 def posts(request):
     
@@ -91,7 +90,7 @@ def posts(request):
         'page': 'blog'
     }
     
-    return render(request, 'category.html', context)
+    return TemplateResponse(request, 'category.html', context)
 
 from django.http import JsonResponse
 
