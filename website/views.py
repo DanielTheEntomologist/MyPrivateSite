@@ -1,4 +1,5 @@
-from django.shortcuts import render
+# from django.shortcuts import render
+from django.template.response import TemplateResponse as render
 
 global_context = {
     "name": "Daniel",
@@ -19,21 +20,21 @@ def home(request):
     # get all categories
     categories = Category.objects.all()
 
-    local_context = {
+    context = {
         'categories': categories,"display_navigation_hints":display_navigation_tips,
         'page': 'home'
     }
-    context = {**global_context, **local_context}
+    
     
     return render(request, "home.html", context)
 
 def aboutme(request):
     categories = Category.objects.all()
     context = global_context.copy()
-    context["categories"] = categories
+    context["categories"] = categories # type: ignore
     context["page"] = "aboutme"
 
-    return render(request, template_name="aboutme.html",context=context)
+    return render(request, "aboutme.html",context)
 
 # import markdown
 
@@ -45,51 +46,51 @@ def blog(request):
     categories = Category.objects.all()
     featured = Post.objects.filter(featured=True)
     latest = Post.objects.order_by('-timestamp')[0:3]
-    local_context= {
+    context= {
         'object_list': featured,
         'latest': latest,
         'categories':categories,
         "page": 'blog'
     }
-    context = {**global_context, **local_context}
+    
     return render(request, 'blog.html', context)
     
 def post(request,slug):
     
-    local_context = {
+    context = {
         'post': Post.objects.get(slug=slug),
         'categories': Category.objects.all(),
         'page': 'blog'
     }
-    context = {**global_context, **local_context}
+    
     return render(request, 'post.html', context)
 
 def category(request,slug):
     category = Category.objects.get(slug=slug)
-    local_context = {
+    context = {
         'posts': Post.objects.filter(category=category).order_by("display_order"),
         "categories": Category.objects.all(),
         'page': 'category'
     }
-    context = {**global_context, **local_context}
+    
     return render(request, 'category.html', context)
 
 def categories(request):
-    local_context = {
+    context = {
         'categories': Category.objects.all(),
         'page': 'category'
     }
-    context = {**global_context, **local_context}
+    
     return render(request, 'categories.html', context)
 
 def posts(request):
     
-    local_context = {
+    context = {
         'posts': Post.objects.all(),
         'categories': Category.objects.all(),
         'page': 'blog'
     }
-    context = {**global_context, **local_context}
+    
     return render(request, 'category.html', context)
 
 from django.http import JsonResponse

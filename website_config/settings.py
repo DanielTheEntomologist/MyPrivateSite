@@ -93,6 +93,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # cusom middleware
+    'website.middleware.GlobalContextMiddleware',
 ]
 
 ROOT_URLCONF = 'website_config.urls'
