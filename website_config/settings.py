@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import secrets
 from pathlib import Path
+import sys
 
 import dj_database_url
 
@@ -138,8 +139,19 @@ if IS_HEROKU_APP:
             ssl_require=True,
         ),
     }
-else:
+elif 'test' in sys.argv:
 
+
+    DATABASES = {'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_test_db',
+        'USER': 'django',
+        'PASSWORD': 'PISSWORT',
+        'HOST': 'localhost',
+        'PORT': '',
+        },}
+    
+else:
     DATABASES = {'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'myproject',
@@ -147,7 +159,8 @@ else:
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
-    }}
+        },}
+
 
 
 
