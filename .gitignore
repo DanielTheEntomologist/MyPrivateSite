@@ -3,4 +3,6 @@
 whole.json
 dev_secret_key.py
 .vscode/
-media/
+media/*.png
+media/*.jpg
+media/cv/*.pdf
