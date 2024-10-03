@@ -43,8 +43,8 @@ def aboutme(request):
     context["categories"] = categories  # type: ignore
     context["page"] = "aboutme"
     cv = CurriculumVitae.objects.first()
-    context["cv_file"] = cv.pdf_file.url
-    context["cv_name"] = cv.name
+    context["cv_file"] = cv.pdf_file.url  # type: ignore
+    context["cv_name"] = cv.name  # type: ignore
 
     return TemplateResponse(request, "aboutme.html", context)
 
