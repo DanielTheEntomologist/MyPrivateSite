@@ -6,6 +6,9 @@ from website import models
 
 admin.site.register(models.Author)
 admin.site.register(models.CurriculumVitae)
+admin.site.register(models.Project)
+admin.site.register(models.Skill)
+admin.site.register(models.SkillProfile)
 
 from django.urls import reverse
 from django.utils.http import urlencode

@@ -53,3 +53,37 @@ class CurriculumVitae(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+    thumbnail = models.ImageField()
+    mobile_thumbnail = models.ImageField(null=True, blank=True)
+    hosted_url = models.URLField(null=True, blank=True)
+    github_url = models.URLField(null=True, blank=True)
+    skills = models.ManyToManyField("Skill")
+
+    def __str__(self):
+        return self.name
+
+
+class Skill(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+class SkillProfile(models.Model):
+    profile_name = models.CharField(max_length=50)
+    description = models.TextField(max_length=200)
+
+    skills = models.ManyToManyField(Skill)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    rating = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.user.username} - {','.join(skill.name for skill in self.skills.all())}"
