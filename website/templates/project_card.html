@@ -14,15 +14,16 @@
     <header>
       <h5 class="card-title">{{project.name}}</h5>
     </header>
-    <section>
-      <p class="card-text">{{project.skills}}</p>
+    <p class="card-text">{{project.description}}</p>
+    {% if project.skills.all %}
+    <section class="pb-3" data-skills>
+      {% for skill in project.skills.all %}
+      <small class="badge rounded-pill text-bg-secondary">{{skill}}</small>
+      {% endfor %}
     </section>
-    <section class="mt-auto">
-      <p class="card-text">
-        <small class="text-muted">{{project.technologies}}</small>
-      </p>
-    </section>
-    <footer class="mt-2 align-self-bottom">
+    {% endif %}
+
+    <footer class="mt-2 mt-md-auto align-self-bottom">
       <a href="{{project.github_url}}" class="btn btn-primary">GitHub</a>
       {% if project.hosted_url %}
       <a href="{{project.hosted_url}}" class="btn btn-primary">Website</a>
