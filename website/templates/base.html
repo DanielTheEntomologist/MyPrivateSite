@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{% static 'css/codehilite_styles.css' %}" />
     {% block cssoverride %}{% endblock %} {% block jsoverride %}{% endblock %}
   </head>
-  <body>
+  <body style="min-width: 320px">
     {% include "navbar.html" %}
     <main>{% block content %}{% endblock %}</main>
   </body>
