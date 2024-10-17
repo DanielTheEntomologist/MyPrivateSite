@@ -109,6 +109,19 @@ def posts(request):
     return TemplateResponse(request, "category.html", context)
 
 
+from .models import Project
+
+
+def folio(request):
+    """View folio page with all projects"""
+
+    # get all categories
+    projects = Project.objects.all()
+    context = {"projects": projects, "page": "folio"}
+
+    return TemplateResponse(request, "folio.html", context)
+
+
 from django.http import JsonResponse
 
 

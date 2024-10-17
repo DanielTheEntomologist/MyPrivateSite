@@ -1,0 +1,32 @@
+<article class="card h-100">
+  <div class="card-img-wrapper position-relative" data-wrapper="true">
+    <div
+      class="card-img-top"
+      style="
+      background-image: url('{{ project.thumbnail.url }}');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+    "
+    ></div>
+  </div>
+  <div class="card-body d-flex flex-column">
+    <header>
+      <h5 class="card-title">{{project.name}}</h5>
+    </header>
+    <section>
+      <p class="card-text">{{project.skills}}</p>
+    </section>
+    <section class="mt-auto">
+      <p class="card-text">
+        <small class="text-muted">{{project.technologies}}</small>
+      </p>
+    </section>
+    <footer class="mt-2 align-self-bottom">
+      <a href="{{project.github_url}}" class="btn btn-primary">GitHub</a>
+      {% if project.hosted_url %}
+      <a href="{{project.hosted_url}}" class="btn btn-primary">Website</a>
+      {% endif %}
+    </footer>
+  </div>
+</article>
