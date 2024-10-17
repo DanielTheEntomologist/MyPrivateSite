@@ -2,14 +2,40 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div class="container py-5">
-  <div class="row d-flex">
-    {% for project in projects %}
-    <div class="col-lg-6 col-xl-4 mb-4">
-      {% include "project_card.html" with project=project %}
+<style>
+  /* suppress navbar */
+  #navbar {
+    display: none;
+  }
+</style>
+
+<header class="jumbotron m-2 p-5 border border-secondary rounded">
+  <h1 class="display-3">My Projects</h1>
+  <p class="lead">
+    Some of projects I have created when learning web development and
+    programming
+  </p>
+  <hr class="my-4" />
+  <p>
+    It uses utility classes for typography and spacing to space content out
+    within the larger container.
+  </p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </p>
+</header>
+
+<article>
+  <div class="container py-5">
+    <div class="row d-flex">
+      {% for project in projects %}
+      <div class="col-lg-6 col-xl-4 mb-4">
+        {% include "project_card.html" with project=project %}
+      </div>
+      {%endfor %}
     </div>
-    {%endfor %}
   </div>
-</div>
+</article>
 {% endblock %}
+
 <!-- prettier-ignore-attribute -->
