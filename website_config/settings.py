@@ -64,19 +64,35 @@ if IS_HEROKU_APP:
 else:
     DEBUG = True
 
-# it is possible to drop allow all hosts when hosting on heroku
-# for now I will leave it as it is
-ALLOWED_HOSTS = [
-    "danieb-website-eu-0be2b9c8638a.herokuapp.com",
-    "www.borowiecki.info",
-    "borowiecki.info",
-    "127.0.0.1",
-    "localhost",
-]
+# Enable HSTS
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
+# Other security settings
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = "DENY"
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Secure cookies
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Enable browser XSS filtering
+ALLOWED_HOSTS = []
+if IS_HEROKU_APP:
+    ALLOWED_HOSTS = [
+        "danieb-website-eu-0be2b9c8638a.herokuapp.com",
+        "www.borowiecki.info",
+        "borowiecki.info",
+    ]
+if DEBUG and not IS_HEROKU_APP:
+    ALLOWED_HOSTS = [
+        "127.0.0.1",
+        "localhost",
+    ]
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -244,5 +260,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-X_FRAME_OPTIONS = "SAMEORIGIN"
