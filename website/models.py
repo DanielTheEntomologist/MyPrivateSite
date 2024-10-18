@@ -55,11 +55,14 @@ class CurriculumVitae(models.Model):
         return self.name
 
 
+from website.storage import MyStorage
+
+
 class Project(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
-    thumbnail = models.ImageField()
-    mobile_thumbnail = models.ImageField(null=True, blank=True)
+    thumbnail = models.ImageField(storage=MyStorage())
+    mobile_thumbnail = models.ImageField(null=True, blank=True, storage=MyStorage())
     hosted_url = models.URLField(null=True, blank=True)
     github_url = models.URLField(null=True, blank=True)
     skills = models.ManyToManyField("Skill")

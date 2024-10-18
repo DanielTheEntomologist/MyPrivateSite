@@ -116,7 +116,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # cusom middleware
+    # custom middleware
     "website.middleware.GlobalContextMiddleware",
 ]
 
@@ -238,8 +238,18 @@ STATICFILES_DIRS = [  # BASE_DIR / "website/static",
     BASE_DIR / "website/static/md",
 ]
 # Media settings
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+MEDIA_ROOT = os.path.join("storage.bunnycdn.com", "minimum-europe", "personal-site")
+
+CUSTOM_REMOTE_STORAGE_OPTIONS = {
+    "API_KEY": os.environ.get("BUNNY_CDN_API_KEY"),
+    "STORAGE_ZONE": "minimum-europe",
+    "STORAGE_ZONE_REGION": "de",
+    "FOLDER": "personal-site",
+}
+
 
 # in the future possibly enable compression of static file as Heroku Example recommends.
 # will have to understand serving static files better first.
