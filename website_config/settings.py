@@ -244,7 +244,7 @@ STATICFILES_DIRS = [  # BASE_DIR / "website/static",
 MEDIA_ROOT = os.path.join("storage.bunnycdn.com", "minimum-europe", "personal-site")
 
 CUSTOM_REMOTE_STORAGE_OPTIONS = {
-    "API_KEY": os.environ.get("BUNNY_CDN_API_KEY"),
+    "API_KEY_ENV_NAME": "BUNNY_CDN_API_KEY",
     "STORAGE_ZONE": "minimum-europe",
     "STORAGE_ZONE_REGION": "de",
     "FOLDER": "personal-site",

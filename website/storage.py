@@ -8,6 +8,7 @@ from django.core.files.storage import Storage
 from django.conf import settings
 
 from django.core.files.base import File
+import os
 
 
 class MyStorage(Storage):
@@ -47,17 +48,34 @@ class MyStorage(Storage):
     If a file with name already exists, get_alternative_name() is called to obtain an alternative name.
     """
 
-    def __init__(self, option=None):
-        if not option:
-            options = settings.CUSTOM_REMOTE_STORAGE_OPTIONS
+    def __init__(self, options=None):
+        """Initialize the storage class."""
+        if options is None:
+            options = {
+                "api_key_name": settings.CUSTOM_REMOTE_STORAGE_OPTIONS[
+                    "API_KEY_ENV_NAME"
+                ],
+                "storage_zone": settings.CUSTOM_REMOTE_STORAGE_OPTIONS["STORAGE_ZONE"],
+                "storage_zone_region": settings.CUSTOM_REMOTE_STORAGE_OPTIONS[
+                    "STORAGE_ZONE_REGION"
+                ],
+                "remote_storage_folder": settings.CUSTOM_REMOTE_STORAGE_OPTIONS[
+                    "FOLDER"
+                ],
+            }
+
         self.options = options
+        self.api_key_name = options["api_key_name"]
         self.storage = BunnyStorage(
-            api_key=options["API_KEY"],
-            storage_zone=options["STORAGE_ZONE"],
-            storage_zone_region=options["STORAGE_ZONE_REGION"],
+            api_key=self._get_api_key(),
+            storage_zone=options["storage_zone"],
+            storage_zone_region=options["storage_zone_region"],
         )
-        self.remote_storage_folder = options["FOLDER"]
+        self.remote_storage_folder = options["remote_storage_folder"]
         self.local_storage = settings.DEFAULT_FILE_STORAGE
+
+    def _get_api_key(self):
+        return os.environ.get(self.api_key_name)
 
     def _open(self, name, mode="rb"):
         """Open and return the file name."""
@@ -115,3 +133,18 @@ class MyStorage(Storage):
         )
         url = self.storage.PutFile(content, name, self.remote_storage_folder)
         return name
+
+    def deconstruct(self):
+        """
+        Returns a 3-tuple with enough information to recreate the storage instance.
+        """
+        return (
+            "website.storage.MyStorage",  # The import path of the class
+            [],  # Positional arguments (none in this case)
+            {"options": self.options},  # Keyword arguments
+        )
+
+    def __eq__(self, other):
+        if not isinstance(other, MyStorage):
+            return False
+        return self.options == other.options
